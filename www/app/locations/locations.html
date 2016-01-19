@@ -1,0 +1,7 @@
+<ion-view title="Locations" ng-controller="LocationsCtrl as vm">
+	<ion-content class="has-header">
+    <a class="list" ng-repeat="location in vm.locations">
+    	<div class="item">{{location.name}}</div>
+    </a>
+  </ion-content>
+</ion-view>
