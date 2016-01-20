@@ -8,6 +8,5 @@
 
     var data = eliteApi.getLeagueData();
     vm.teams = data.teams;
-    console.log('division', vm.teams);
   };
 })();
