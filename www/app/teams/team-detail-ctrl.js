@@ -3,24 +3,28 @@
 
   angular.module('eliteApp').controller('TeamDetailCtrl', ['$stateParams', 'eliteApi',  TeamDetailCtrl]);
 
-  function TeamDetailCtrl($stateParams, eliteApi) {
+  function TeamDetailCtrl( $stateParams, eliteApi) {
     var vm = this;
 
     vm.teamId = Number($stateParams.id);
+
     eliteApi.getLeagueData().then(function(data) {
+    //  vm.data=data;
+
       var team = _.chain(data.teams)
-                  .flatten("divisionTeams")
-                  .find({"id": vm.teamId })
+                  .flatten('divisionTeams')
+                  .find({'id': vm.teamId})
                   .value();
+                  console.log('@@@@@@@@@@@@@@', team);
 
       vm.teamName = team.name;
 
       vm.games = _.chain(data.games)
                   .filter(isTeamInGame)
                   .map(function(item) {
-                    var isTeam1 = (item.team1Id === vm.teamId ? true : false);
+                    var isTeam1 = (item.team1Id == vm.teamId);
                     var opponentName = isTeam1 ? item.team2 : item.team1;
-                    var scoreDisplay = getScoreDisplay(isTeam1, item.team1Score, team2Score);
+                    var scoreDisplay = getScoreDisplay(isTeam1, item.team1Score, item.team2Score);
 
                     return {
                       game: item.id,
@@ -35,8 +39,8 @@
                   .value();
 
       vm.teamStanding = _.chain(data.standings)
-                         .flatten("divisionStandings")
-                         .find({"teamId": vm.teamId})
+                         .flatten('divisionStandings')
+                         .find({teamId: vm.teamId})
                          .value();
 
     });

@@ -5,10 +5,10 @@
 
   function TeamsCtrl(eliteApi) {
     var vm = this;
-
-    eliteApi.getLeagueData(function(data) {
+    eliteApi.getLeagueData().then(function(data) {
       vm.teams = data.teams;
+
     });
-    vm.teams = data.teams;
+
   };
 })();

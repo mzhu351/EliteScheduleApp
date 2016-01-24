@@ -3,7 +3,7 @@
     <div class="list">
     	<a class="item item-icon-right" ng-repeat="league in vm.leagues"
 				ng-click="vm.selectLeague(league.id)">
-    		{{league.name}}
+    		{{league.name}}{{league.id}}
 				<i class="icon ion-chevron-right icon-accessory"></i>
     	</a>
     </div>

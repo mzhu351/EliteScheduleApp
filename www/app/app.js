@@ -1,4 +1,4 @@
-angular.module('eliteApp', ['ionic'])
+angular.module('eliteApp', ['ionic', "angular-cache"])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
